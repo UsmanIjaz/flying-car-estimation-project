@@ -14,7 +14,7 @@ Project outline:
  - [Step 3: Prediction Step](#step-3-prediction-step)
  - [Step 4: Magnetometer Update](#step-4-magnetometer-update)
  - [Step 5: Closed Loop + GPS Update](#step-5-closed-loop--gps-update)
- - [Step 6: Adding Your Controller](#step-6-adding-your-controller)
+ - [Step 6: Adding Our Controller](#step-6-adding-our-controller)
 
 
 
@@ -79,7 +79,7 @@ Here is the output:
 
 ### Step 3: Prediction Step ###
 
-In this next step we will be implementing the prediction step of your filter.
+In this next step we will be implementing the prediction step of our filter.
 
 
 1. We will run scenario `08_PredictState`.  This scenario is configured to use a perfect IMU (only an IMU). Due to the sensitivity of double-integration to attitude errors, we've made the accelerometer update very insignificant (`QuadEstimatorEKF.attitudeTau = 100`).  The plots on this simulation show element of our estimated state and that of the true state.  At the moment we should see that our estimated state does not follow the true state.
@@ -152,9 +152,9 @@ Now we have that function implemented, let's implement the rest of the predictio
 
 ### Step 4: Magnetometer Update ###
 
-Up until now we've only used the accelerometer and gyro for our state estimation.  In this step, we will be adding the information from the magnetometer to improve your filter's performance in estimating the vehicle's heading.
+Up until now we've only used the accelerometer and gyro for our state estimation.  In this step, we will be adding the information from the magnetometer to improve our filter's performance in estimating the vehicle's heading.
 
-1. Run scenario `10_MagUpdate`.  This scenario uses a realistic IMU, but the magnetometer update hasn’t been implemented yet. As a result, you will notice that the estimate yaw is drifting away from the real value (and the estimated standard deviation is also increasing).  Note that in this case the plot is showing you the estimated yaw error (`quad.est.e.yaw`), which is drifting away from zero as the simulation runs.  You should also see the estimated standard deviation of that state (white boundary) is also increasing.
+1. Run scenario `10_MagUpdate`.  This scenario uses a realistic IMU, but the magnetometer update hasn’t been implemented yet. As a result, we will notice that the estimate yaw is drifting away from the real value (and the estimated standard deviation is also increasing).  Note that in this case the plot is showing us the estimated yaw error (`quad.est.e.yaw`), which is drifting away from zero as the simulation runs.  We should also see the estimated standard deviation of that state (white boundary) is also increasing.
 
 2. Tuned the parameter `QYawStd = 0.075` (`QuadEstimatorEKF.txt`) for the QuadEstimatorEKF so that it approximately captures the magnitude of the drift.
 
@@ -201,13 +201,13 @@ Here is the output:
 <img src="result-animations/scenario-11.gif" width="500"/>
 </p>
 
-### Step 6: Adding Your Controller ###
+### Step 6: Adding Our Controller ###
 
-Up to this point, we have been working with a controller that has been relaxed to work with an estimated state instead of a real state.  So now, you will see how well your controller performs and de-tune your controller accordingly.
+Up to this point, we have been working with a controller that has been relaxed to work with an estimated state instead of a real state.  So now, we will see how well our controller performs and de-tune our controller accordingly.
 
-1. Let's replace `QuadController.cpp` with the controller you wrote in the last project.
+1. Let's replace `QuadController.cpp` with the controller we wrote in the last project.
 
-2. Let's also replace `QuadControlParams.txt` with the control parameters you came up with in the last project.
+2. Let's also replace `QuadControlParams.txt` with the control parameters we came up with in the last project.
 
 Here is the output:
 <p align="center">
